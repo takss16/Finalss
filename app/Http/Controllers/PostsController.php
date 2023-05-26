@@ -32,13 +32,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
-            'name' => $request->name,
-            'age' => $request->age,
-            'course' => $request->course
-        ]);
+        $post = new post();
+        $post->name = $request->name;
+        $post->age = $request->age;
+        $post->course = $request->course;
+        $post->save();
 
-        return redirect()->route('home');
+        return redirect(route('blog.show'));
     }
 
     /**
@@ -55,15 +55,22 @@ class PostsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('blog.edit', [
+            'post' => Post::where('id', $id)->first()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        Post::where('id', $id)->update([
+            'name' => $request->name,
+            'age' => $request->age,
+            'course' => $request->course
+        ]);
+        return redirect(route('blog.show'));
     }
 
     /**
@@ -71,6 +78,7 @@ class PostsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Post::destroy($id);
+        return redirect()->route('blog.show')->with('message', 'User has been deleted');
     }
 }

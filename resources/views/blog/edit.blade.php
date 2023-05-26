@@ -48,23 +48,24 @@
     <div class="container">
         <div class="text-center pt-5">
             <h1 class="text-3xl text-gray-700">
-                Add new student
+                UPdate Info
             </h1>
             <hr class="border border-1 border-gray-300 mt-4">
         </div>
 
         <div class="m-auto pt-5">
             <form
-                action="{{ route('blog.store') }}"
+                action="{{ route('blog.update', $post->id) }}"
                 method="POST"
                 enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
     
                 <div class="form-group">
                     <input
                         type="text"
                         name="name"
-                        placeholder="Enter name."
+                        value="{{ $post->name }}"
                         class="form-control bg-transparent text-xl">
                 </div>
 
@@ -72,7 +73,7 @@
                     <input
                         type="text"
                         name="course"
-                        placeholder="Enter ecourse"
+                        value="{{ $post->course }}"
                         class="form-control bg-transparent text-xl">
                 </div>
 
@@ -80,14 +81,14 @@
                     <input
                         type="int"
                         name="age"
-                        placeholder="Enter age."
+                        value="{{ $post->age }}"
                         class="form-control bg-transparent text-xl">
                 </div>
              
                 <button
                     type="submit"
                     class="btn btn-primary mt-3">
-                    Submit Post
+                    Update
                 </button>
             </form>
         </div>

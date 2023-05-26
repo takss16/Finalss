@@ -30,7 +30,7 @@
 <body>
     <div class="container">
         <header>
-            <h2 class="text-center">Rest Method</h2>
+            <h2 class="text-center">Student List</h2>
         </header>
 
         <ul class="list-group">
@@ -40,7 +40,7 @@
                     <p style="display: inline;">{{ $value->name }}</p>
                     <p style="display: inline;">{{ $value->age }}</p>
                     <p style="display: inline;">{{ $value->course }}</p>
-                    <form action="{{ route('blog.edit', ['id' => $value->id]) }}" method="post">
+                    <form action="{{ route('blog.edit', ['id' => $value->id]) }}" method="get">
                         @csrf
                         <button class="btn btn-primary" type="submit">Edit</button>
                     </form>

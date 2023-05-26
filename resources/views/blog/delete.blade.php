@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,50 +45,35 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="text-center pt-5">
             <h1 class="text-3xl text-gray-700">
-                Add new student
+                UPdate Info
             </h1>
             <hr class="border border-1 border-gray-300 mt-4">
         </div>
 
         <div class="m-auto pt-5">
-            <form
-                action="{{ route('blog.store') }}"
-                method="POST"
-                enctype="multipart/form-data">
+            <form action="{{ route('blog.update', $post->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-    
+                @method('PATCH')
+
                 <div class="form-group">
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Enter name."
-                        class="form-control bg-transparent text-xl">
+                    <input type="text" name="name" value="{{ $post->name }}" class="form-control bg-transparent text-xl">
                 </div>
 
                 <div class="form-group">
-                    <input
-                        type="text"
-                        name="course"
-                        placeholder="Enter ecourse"
-                        class="form-control bg-transparent text-xl">
+                    <input type="text" name="course" value="{{ $post->course }}" class="form-control bg-transparent text-xl">
                 </div>
 
                 <div class="form-group">
-                    <input
-                        type="int"
-                        name="age"
-                        placeholder="Enter age."
-                        class="form-control bg-transparent text-xl">
+                    <input type="int" name="age" value="{{ $post->age }}" class="form-control bg-transparent text-xl">
                 </div>
-             
-                <button
-                    type="submit"
-                    class="btn btn-primary mt-3">
-                    Submit Post
+
+                <button type="submit" class="btn btn-primary mt-3">
+                    Update
                 </button>
             </form>
         </div>
@@ -96,4 +82,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
