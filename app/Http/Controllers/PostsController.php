@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -11,7 +14,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $post = Post::all();
+
+        return view('blog.index');
     }
 
     /**
@@ -19,7 +24,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -27,15 +32,22 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name,
+            'age' => $request->age,
+            'course' => $request->course
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        //dito i sho-show mga datas
+        return view('blog.show', ['name' => DB::select('select * from posts')]);
     }
 
     /**
